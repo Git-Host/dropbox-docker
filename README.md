@@ -1,12 +1,11 @@
-# dropbox-docker
+Dropbox的 - 泊坞窗
+写的Dropbox的服务器应用程序的一个码头工人的形象。
 
-A docker image for writing Dropbox-based server apps.
+此图像提供了所谓的后更新挂钩的单一有用的功能。你的应用程序的图像可以提供这样的挂钩，这将会运行时的Dropbox下的文件进行更新。见example/nanoc - 静态站点生成无缝使用Dropbox的。
 
-This image provides a single useful feature called post-update hooks. Your app image can provide this hook, which gets run whenever the files under Dropbox is updated. See example/nanoc - a static site generator seamlessly using Dropbox.
+##快速启动
 
-## quick start
-
-Get yourself a Ubuntu 14.04 machine, and then:
+让自己的Ubuntu14.04的机器，然后：
 
 ```bash
 # install docker
@@ -31,10 +30,10 @@ make run
 
 btsync seemed like the perfect solution, but I consistently noticed data loss due to timestamps. This has been discussed in the [BT forum](http://forum.bittorrent.com/topic/20104-reproducible-data-loss-same-as-old-file-overwriting-new-files/).
 
-### Dropbox
+###Dropbox
 
-Dropbox is not perfect either; if an attacker gains access to the server instance, he gets access to all files in your Dropbox (selective sync is no solution here). Dropbox's API is insufficient for our purposs; their Sync API cannot be used from servers, and their Server API doesn't seem to do seamless sync. That's what I gather from my cursory reading of their API documentation.
+Dropbox也不是完美的;如果攻击者能够访问到服务器实例，他得到访问您的Dropbox的所有文件（选择性同步是无解在这里）。 Dropbox的API是不够的我们purposs;其同步API不能从服务器使用，其服务器API似乎没有做无缝同步。这是我从我粗略他们的API文档的阅读聚集。
 
-There is however a workaround, which is what I'm exploring: create a secondary Dropbox account and share the particular folder to that account. This way, if the server instance is compromised, only that particular folder will be vulnerable.
+然而，有一个解决办法，这是我在探索：创建一个辅助的Dropbox帐户和共享的特定文件夹到该帐户。这样一来，如果该服务器实例被泄露，仅该特定文件夹将是脆弱的。
 
-An unintended advantage of using Dropbox is that sync feels much faster (instantaneous) compared to btsync.
+使用Dropbox的一个意想不到的好处是，同步感觉快很多（瞬时）相比，btsync。
